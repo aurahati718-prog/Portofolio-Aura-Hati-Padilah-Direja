@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Hati Padilah Direja | Portofolio Profesional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            900: '#134e4a',
+                        },
+                        warm: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#FAF9F6] text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#FAF9F6]/85 backdrop-blur-md border-b border-slate-200/70 transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2.5 group">
+                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-brand-600 to-emerald-400 text-white flex items-center justify-center font-heading font-extrabold text-lg shadow-sm group-hover:rotate-6 transition-transform">
+                        A
+                    </div>
+                    <span class="font-heading font-bold text-slate-900 text-lg tracking-tight">Aura<span class="text-brand-600">hati</span></span>
+                </a>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-7">
+                    <a href="#tentang" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition">Profil & Nilai</a>
+                    <a href="#perjalanan" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition">Pengalaman</a>
+                    <a href="#wirausaha" class="text-sm font-medium text-slate-600 hover:text-warm-600 transition flex items-center gap-1.5">
+                        <span>Usaha Sampingan</span>
+                        <span class="px-1.5 py-0.5 text-[10px] font-bold bg-warm-100 text-warm-600 rounded-md">UMKM</span>
+                    </a>
+                    <a href="#keahlian" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition">Keahlian</a>
+                    <button onclick="toggleEditModal()" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition flex items-center gap-1.5">
+                        <i class="fas fa-sliders-h text-xs"></i>
+                        <span>Sesuaikan Data</span>
+                    </button>
+                    <a href="#kontak" class="px-5 py-2.5 rounded-2xl bg-slate-900 text-white text-sm font-semibold hover:bg-brand-600 transition shadow-sm">
+                        Ajak Ngobrol
+                    </a>
+                </div>
+
+                <!-- Tombol Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" aria-label="Buka Menu" class="p-2 rounded-xl text-slate-700 hover:bg-slate-200/60 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-5 space-y-2 shadow-xl">
+            <a href="#tentang" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Profil & Nilai</a>
+            <a href="#perjalanan" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Pengalaman Kerja & PKL</a>
+            <a href="#wirausaha" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-warm-50 hover:text-warm-600">Usaha Sale Pisang</a>
+            <a href="#keahlian" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Keahlian</a>
+            <button onclick="toggleEditModal(); mobileMenu.classList.add('hidden');" class="w-full text-left px-3 py-2.5 rounded-xl text-base font-medium text-brand-700 bg-brand-50">
+                <i class="fas fa-sliders-h mr-2"></i>Sesuaikan Foto & Kontak
+            </button>
+            <a href="#kontak" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-semibold bg-brand-600 text-white text-center mt-2">Hubungi Saya</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-28 pb-16 md:pt-36 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Kolom Teks -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-slate-700 text-xs sm:text-sm font-medium">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span><strong></strong> • Siap Bekerja & Berinovasi</span>
+                </div>
+                
+                <h1 class="font-heading text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 leading-[1.15] tracking-tight">
+                    Halo, Saya <br>
+                    <span class="bg-gradient-to-r from-brand-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent">
+                        Aura Hati Padilah Direja
+                    </span>
+                </h1>
+                
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    Lulusan <strong>Teknik Komputer & Jaringan (TKJ)</strong> yang menggabungkan ketelitian teknis, keramahan pelayanan ritel selama <strong>2 tahun</strong>, pengalaman administrasi instansi pemerintahan, hingga semangat wirausaha mandiri.
+                </p>
+
+                <!-- Tombol Aksi -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+                    <a href="#kontak" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-lg shadow-brand-600/20 flex items-center justify-center space-x-2">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Hubungi Saya</span>
+                    </a>
+                    <a href="#perjalanan" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white text-slate-700 border border-slate-200 font-semibold hover:border-slate-300 hover:bg-slate-50 transition flex items-center justify-center space-x-2">
+                        <span>Lihat Rekam Jejak</span>
+                        <i class="fas fa-arrow-down text-xs text-slate-400"></i>
+                    </a>
+                </div>
+
+                <!-- Highlight Pengalaman -->
+                <div class="grid grid-cols-3 gap-3 sm:gap-6 pt-6 border-t border-slate-200/80 max-w-lg mx-auto lg:mx-0">
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm text-center lg:text-left">
+                        <p class="font-heading text-xl sm:text-2xl font-extrabold text-slate-900">2,5 Thn</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Pengalaman Kerja</p>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm text-center lg:text-left">
+                        <p class="font-heading text-xl sm:text-2xl font-extrabold text-brand-600">6 Bln</p>
+                        <p class="text-xs text-slate-500 mt-0.5">PKL Bapenda</p>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm text-center lg:text-left">
+                        <p class="font-heading text-xl sm:text-2xl font-extrabold text-warm-600">UMKM</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Usaha Mandiri</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kartu Profil Visual -->
+            <div class="lg:col-span-5 flex justify-center relative">
+                <!-- Dekorasi Blob -->
+                <div class="absolute -top-6 -right-6 w-64 h-64 bg-brand-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-6 -left-6 w-64 h-64 bg-warm-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative w-full max-w-sm bg-white p-5 rounded-[2rem] shadow-xl border border-slate-100 animate-float">
+                    <div class="relative aspect-square w-full rounded-3xl overflow-hidden bg-slate-100 mb-5 group">
+                        <img 
+                            id="profile-photo"
+                            src="https://placehold.co/600x600/0d9488/ffffff?text=Foto+Aura+Hati" 
+                            alt="Foto Profil Aura Hati Padilah Direja" 
+                            class="w-full h-full object-cover"
+                            onerror="this.src='https://placehold.co/600x600/0f766e/ffffff?text=Aura+Hati+P.D'"
+                        >
+                        <!-- Floating Badge -->
+                        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-sm flex items-center gap-2">
+                            <i class="fas fa-laptop-code text-brand-600 text-xs"></i>
+                            <span class="text-xs font-bold text-slate-800">TKJ • SMKN 1 Subang</span>
+                        </div>
+                        <!-- Tombol Ganti Foto Cepat -->
+                        <button onclick="toggleEditModal()" title="Ganti Foto & Data" class="absolute bottom-3 right-3 bg-slate-900/80 hover:bg-brand-600 text-white px-3 py-1.5 rounded-xl text-xs font-semibold backdrop-blur-md transition flex items-center gap-1.5 shadow-md">
+                            <i class="fas fa-camera"></i>
+                            <span>Ganti Foto</span>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 px-1">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h2 class="font-heading font-bold text-lg text-slate-900">Aura Hati P. Direja</h2>
+                                <p class="text-xs text-slate-500">Admin • Kasir & Ritel • Produksi • Wirausaha</p>
+                            </div>
+                            <button onclick="window.print()" title="Cetak Portofolio" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-600 flex items-center justify-center transition">
+                                <i class="fas fa-print"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 text-[11px] font-semibold">Teliti & Cekatan</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-warm-50 text-warm-600 text-[11px] font-semibold">Berjiwa Wirausaha</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-semibold">Melek Teknologi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bento Grid: Karakter & Keunggulan -->
+    <section id="tentang" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Tentang Saya</span>
+            <h2 class="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">Bukan Sekadar Pekerja, Tapi Pemecah Masalah</h2>
+            <p class="text-slate-600 mt-3 text-sm sm:text-base">
+                Latar belakang pendidikan IT yang dipadukan dengan pengalaman lapangan membuat saya cepat beradaptasi dengan berbagai sistem kerja.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+            <!-- Kartu Besar 1 -->
+            <div class="md:col-span-7 bg-white p-7 rounded-3xl border border-slate-200/70 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-xl mb-5">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-slate-900 mb-2">Latar Belakang IT & Administrasi</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Sebagai lulusan <strong>Teknik Komputer dan Jaringan (TKJ) SMKN 1 Subang</strong>, saya terbiasa menggunakan komputer, mengolah data administrasi, serta memahami alur kerja digital. Pengalaman PKL selama 6 bulan di <strong>Badan Pendapatan Daerah (Bapenda)</strong> melatih ketelitian saya dalam memverifikasi berkas pajak (SPPT) tanpa kesalahan.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-4 text-xs font-semibold text-slate-500">
+                    <span><i class="fas fa-check-circle text-brand-500 mr-1"></i> Cepat Menguasai Sistem Baru</span>
+                    <span><i class="fas fa-check-circle text-brand-500 mr-1"></i> Terbiasa dengan Data & Dokumen</span>
+                </div>
+            </div>
+
+            <!-- Kartu 2 -->
+            <div class="md:col-span-5 bg-gradient-to-br from-slate-900 to-slate-800 text-white p-7 rounded-3xl shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 text-brand-400 flex items-center justify-center text-xl mb-5">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-2">Mentalitas Tangguh & Jujur</h3>
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Perjalanan Karier & Pendidikan</span>
+                <h2 class="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">Pengalaman Kerja & Praktik</h2>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">
+                    Setiap peran membentuk keahlian unik yang saling melengkapi dalam diri saya.
+                </p>
+
+                <!-- Filter Kategori Pengalaman -->
+                <div class="flex flex-wrap justify-center gap-2 mt-6">
+                    <button onclick="filterExperience('all', this)" class="exp-filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white transition">
+                        Semua Pengalaman
+                    </button>
+                    <button onclick="filterExperience('ritel', this)" class="exp-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        Kasir & Ritel
+                    </button>
+                    <button onclick="filterExperience('produksi', this)" class="exp-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        Produksi Konveksi
+                    </button>
+                    <button onclick="filterExperience('admin', this)" class="exp-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        Administrasi Instansi
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                
+                <!-- 1. Kasir Konter (2 Tahun) -->
+                <div data-category="ritel" class="exp-card group bg-[#FAF9F6] hover:bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-brand-300 transition-all shadow-sm hover:shadow-md">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-600 text-white flex items-center justify-center text-lg shrink-0">
+                                <i class="fas fa-cash-register"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg sm:text-xl text-slate-900">Kasir & Staf Pelayanan Konter</h3>
+                                <p class="text-sm font-medium text-brand-600">Konter Seluler & Layanan Digital</p>
+                            </div>
+                        </div>
+                        <span class="self-start sm:self-center px-4 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold">
+                            Pengalaman 2 Tahun
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        Menjadi garda terdepan dalam melayani pelanggan setiap hari, menjaga akurasi keuangan kasir, dan memastikan operasional konter berjalan lancar.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-slate-700">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Mengoperasikan transaksi kasir harian, top-up digital, dan pembayaran dengan teliti.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Membuat laporan pembukuan pemasukan dan pengeluaran harian secara jujur & rapi.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Melayani pelanggan dengan ramah, sabar, dan memberikan solusi produk sesuai kebutuhan.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Melakukan pengecekan stok barang (stock opname) dan menata tampilan etalase.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Cutting Bahan Konveksi (6 Bulan) -->
+                <div data-category="produksi" class="exp-card group bg-[#FAF9F6] hover:bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-brand-300 transition-all shadow-sm hover:shadow-md">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center text-lg shrink-0">
+                                <i class="fas fa-scissors"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg sm:text-xl text-slate-900">Operator Cutting Bahan (Pemotongan Kain)</h3>
+                                <p class="text-sm font-medium text-slate-600">Produksi Konveksi / Garmen</p>
+                            </div>
+                        </div>
+                        <span class="self-start sm:self-center px-4 py-1.5 rounded-full bg-slate-200 text-slate-800 text-xs font-bold">
+                            Pengalaman 6 Bulan
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        Bertanggung jawab pada tahap awal produksi pakaian yang menuntut konsentrasi tinggi, kecepatan, dan ketepatan ukuran pola.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-slate-700">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Memotong bahan kain sesuai pola dan ukuran standar produksi dengan presisi tinggi.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Mengatur tata letak pola agar efisien dan meminimalkan sisa kain terbuang.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Menyortir dan mengelompokkan hasil potongan (bundling) sebelum masuk tahap jahit.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-brand-600 mt-1 text-xs"></i>
+                            <span>Bekerja memenuhi target produksi harian dengan tetap menjaga kualitas potongan.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. PKL Badan Pendapatan Daerah (6 Bulan) -->
+                <div data-category="admin" class="exp-card group bg-[#FAF9F6] hover:bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-brand-300 transition-all shadow-sm hover:shadow-md">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-lg shrink-0">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg sm:text-xl text-slate-900">Praktik Kerja Lapangan (PKL) — Bagian Pengecekan Surat SPPT</h3>
+                                <p class="text-sm font-medium text-blue-600">Badan Pendapatan Daerah (Bapenda)</p>
+                            </div>
+                        </div>
+                        <span class="self-start sm:self-center px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
+                            PKL 6 Bulan
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        Terlibat langsung dalam mendukung ketertiban administrasi dokumen perpajakan daerah di lingkungan instansi pemerintahan.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-slate-700">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-blue-600 mt-1 text-xs"></i>
+                            <span>Melakukan pengecekan dan verifikasi kelengkapan data pada surat SPPT (Surat Pemberitahuan Pajak Terhutang).</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-blue-600 mt-1 text-xs"></i>
+                            <span>Mengelompokkan dan mengarsipkan dokumen berdasarkan wilayah agar mudah ditemukan.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-blue-600 mt-1 text-xs"></i>
+                            <span>Memastikan tidak ada selisih atau kesalahan penulisan data sebelum proses distribusi.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-blue-600 mt-1 text-xs"></i>
+                            <span>Terbiasa bekerja dengan standar kedisiplinan dan etika birokrasi instansi pemerintah.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Pendidikan: SMKN 1 Subang -->
+                <div class="bg-gradient-to-r from-brand-50 to-emerald-50/60 p-6 sm:p-7 rounded-3xl border border-brand-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-white text-brand-600 shadow-sm flex items-center justify-center text-xl shrink-0">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Pendidikan Terakhir</span>
+                            <h3 class="font-heading font-bold text-lg sm:text-xl text-slate-900">SMKN 1 Subang</h3>
+                            <p class="text-sm text-slate-700 font-medium">Jurusan Teknik Komputer dan Jaringan (TKJ)</p>
+                        </div>
+                    </div>
+                    <span class="px-4 py-1.5 rounded-xl bg-white text-slate-800 text-xs font-bold shadow-sm border border-slate-100">
+                        Lulusan Vokasi Unggulan
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight Spesial: Jiwa Wirausaha (Sale Pisang) -->
+    <section id="wirausaha" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="bg-gradient-to-br from-amber-50 via-orange-50/70 to-yellow-50 rounded-[2.25rem] p-8 sm:p-12 border border-amber-200/80 shadow-sm relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 text-amber-800 text-xs font-bold">
+                        <i class="fas fa-fire-alt text-amber-600"></i>
+                        <span>Jiwa Wirausaha & Manajemen Mandiri</span>
+                    </div>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+                        Usaha Sampingan Produksi & Penjualan <span class="text-amber-600">Sale Pisang Rumahan</span>
+                    </h2>
+                    <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                        Di luar jam kerja utama sebagai kasir konter, saya aktif mengelola usaha rumahan <strong>Sale Pisang</strong>. Pengalaman ini membuktikan bahwa saya adalah pribadi yang produktif, pandai mengatur waktu, serta memahami proses bisnis dari hulu ke hilir.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="bg-white/80 backdrop-blur-sm p-3.5 rounded-2xl border border-amber-200/60">
+                            <p class="font-heading font-bold text-slate-900 text-sm">Kontrol Kualitas</p>
+                            <p class="text-xs text-slate-600 mt-0.5">Menjaga rasa & kebersihan produk</p>
+                        </div>
+                        <div class="bg-white/80 backdrop-blur-sm p-3.5 rounded-2xl border border-amber-200/60">
+                            <p class="font-heading font-bold text-slate-900 text-sm">Pemasaran & Sales</p>
+                            <p class="text-xs text-slate-600 mt-0.5">Promosi langsung & media sosial</p>
+                        </div>
+                        <div class="bg-white/80 backdrop-blur-sm p-3.5 rounded-2xl border border-amber-200/60 col-span-2 sm:col-span-1">
+                            <p class="font-heading font-bold text-slate-900 text-sm">Manajemen Modal</p>
+                            <p class="text-xs text-slate-600 mt-0.5">Menghitung HPP & keuntungan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-white p-6 rounded-3xl shadow-md border border-amber-100 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-slate-900">Nilai Tambah bagi Perusahaan</h4>
+                                <p class="text-xs text-slate-500">Apa yang saya bawa dari pengalaman ini?</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 text-sm text-slate-600">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-star text-amber-500 mt-1 text-xs"></i>
+                                <span><strong>Inisiatif Tinggi:</strong> Tidak menunggu perintah untuk memperbaiki hal yang bisa ditingkatkan.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-star text-amber-500 mt-1 text-xs"></i>
+                                <span><strong>Paham Kepuasan Pembeli:</strong> Tahu cara membuat pelanggan kembali lagi (repeat order).</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-star text-amber-500 mt-1 text-xs"></i>
+                                <span><strong>Manajemen Waktu:</strong> Mampu membagi fokus antara pekerjaan utama dan tanggung jawab lain tanpa keteteran.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Keahlian -->
+    <section id="keahlian" class="py-16 bg-white border-t border-slate-200/70 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Kompetensi</span>
+                <h2 class="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">Keahlian & Kemampuan</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Kategori 1: Komputer & Admin -->
+                <div class="p-6 rounded-3xl bg-[#FAF9F6] border border-slate-200/80 space-y-4">
+                    <div class="w-11 h-11 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900">Komputer & Administrasi</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Dasar Jaringan & Hardware (TKJ)</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Verifikasi Dokumen (SPPT)</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Pengarsipan & Data Entry</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Microsoft Office Dasar</span>
+                    </div>
+                </div>
+
+                <!-- Kategori 2: Ritel & Keuangan -->
+                <div class="p-6 rounded-3xl bg-[#FAF9F6] border border-slate-200/80 space-y-4">
+                    <div class="w-11 h-11 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-lg">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900">Kasir, Ritel & Penjualan</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Operasional Kasir & POS</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Pembukuan Kas Harian</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Pelayanan Pelanggan</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Stock Opname Barang</span>
+                    </div>
+                </div>
+
+                <!-- Kategori 3: Produksi & Soft Skills -->
+                <div class="p-6 rounded-3xl bg-[#FAF9F6] border border-slate-200/80 space-y-4">
+                    <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900">Produksi & Sikap Kerja</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Cutting Bahan Konveksi</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Ketelitian & Presisi</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Jujur & Bertanggung Jawab</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700">Manajemen Waktu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Kontak -->
+    <section id="kontak" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="bg-slate-900 rounded-[2.25rem] p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+            <!-- Dekorasi Cahaya -->
+            <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-500/25 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-brand-400"></span>
+                        Terbuka untuk Kesempatan Kerja
+                    </span>
+                    <h2 class="font-heading text-2xl sm:text-4xl font-extrabold leading-tight">
+                        Siap Bergabung & Memberikan Kontribusi Terbaik!
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Terima kasih telah melihat portofolio saya. Jika perusahaan Anda membutuhkan staf yang jujur, teliti, melek komputer, dan pekerja keras (untuk posisi Admin, Kasir, Ritel, maupun Produksi), mari berdiskusi!
+                    </p>
+
+                    <!-- Kontak Cepat -->
+                    <div class="pt-2 space-y-3">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <div class="flex items-center gap-2.5 bg-white/10 px-4 py-2.5 rounded-2xl border border-white/10">
+                                <i class="fab fa-whatsapp text-emerald-400 text-lg"></i>
+                                <span id="wa-text" class="text-sm font-medium">+62 831-8652-7606</span>
+                            </div>
+                            <button onclick="copyText('wa-text', 'Nomor WhatsApp berhasil disalin!')" class="px-4 py-2.5 rounded-2xl bg-brand-600 text-white text-xs font-bold hover:bg-brand-500 transition flex items-center gap-1.5">
+                                <i class="fas fa-copy"></i> Salin WA
+                            </button>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3">
+                            <div class="flex items-center gap-2.5 bg-white/10 px-4 py-2.5 rounded-2xl border border-white/10">
+                                <i class="fas fa-envelope text-amber-400 text-base"></i>
+                                <span id="email-text" class="text-sm font-medium">aurahatipadilahdireja@email.com</span>
+                            </div>
+                            <button onclick="copyText('email-text', 'Alamat Email berhasil disalin!')" class="px-4 py-2.5 rounded-2xl bg-white/15 text-white text-xs font-bold hover:bg-white/25 transition flex items-center gap-1.5">
+                                <i class="fas fa-copy"></i> Salin Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Pesan Cepat ke WhatsApp -->
+                <div class="lg:col-span-5 bg-white text-slate-800 p-6 sm:p-7 rounded-3xl shadow-xl">
+                    <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">Kirim Pesan Langsung</h3>
+                    <p class="text-xs text-slate-500 mb-4">Pesan akan langsung terhubung ke WhatsApp saya.</p>
+                    
+                    <form id="contact-form" class="space-y-3.5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Nama / Instansi</label>
+                            <input type="text" id="sender-name" required placeholder="Contoh: Ibu Rina - HRD" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:bg-white focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Posisi yang Ditawarkan</label>
+                            <input type="text" id="job-position" required placeholder="Contoh: Admin / Kasir / Staff" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:bg-white focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Pesan</label>
+                            <textarea id="sender-message" rows="2" required placeholder="Halo Aura, kami tertarik mengundang Anda wawancara..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:bg-white focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-100"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold text-sm hover:bg-brand-700 transition flex items-center justify-center gap-2 shadow-md shadow-brand-600/20">
+                            <i class="fab fa-whatsapp text-base"></i>
+                            <span>Kirim ke WhatsApp</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-center border-t border-slate-200/80">
+        <p class="text-sm text-slate-600 font-medium">
+            &copy; 2026 <span class="text-slate-900 font-bold">Aura Hati Padilah Direja</span> • Alumni SMKN 1 Subang
+        </p>
+        <p class="text-xs text-slate-400 mt-1">
+            Portofolio Digital Profesional
+        </p>
+    </footer>
+
+    <!-- Notifikasi Toast -->
+    <div id="toast-box" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-sm font-medium border border-slate-700">
+            <i class="fas fa-check-circle text-emerald-400"></i>
+            <span id="toast-message">Berhasil disalin!</span>
+        </div>
+    </div>
+
+    <!-- Modal Kustomisasi Data & Foto -->
+    <div id="edit-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-slate-100 space-y-5 animate-[fadeIn_0.2s_ease-out]">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900">Sesuaikan Data Portofolio</h3>
+                    <p class="text-xs text-slate-500">Perubahan langsung tampil di halaman ini.</p>
+                </div>
+                <button onclick="toggleEditModal()" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Unggah Foto Profil Anda</label>
+                    <input type="file" id="photo-upload" accept="image/*" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 cursor-pointer border border-slate-200 rounded-xl p-1.5">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nomor WhatsApp (Format: 628xxx)</label>
+                    <input type="text" id="input-wa" value="6281234567890" placeholder="Contoh: 6281234567890" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Alamat Email Aktif</label>
+                    <input type="email" id="input-email" value="aurahati.direja@email.com" placeholder="Contoh: aurahati@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-600">
+                </div>
+            </div>
+
+            <div class="flex gap-2.5 pt-2">
+                <button onclick="toggleEditModal()" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50">
+                    Batal
+                </button>
+                <button onclick="saveProfileChanges()" class="flex-1 py-2.5 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 shadow-md shadow-brand-600/20">
+                    Terapkan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Interaktif -->
+    <script>
+        let activePhoneNumber = '6281234567890';
+
+        // Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Modal Edit Profil
+        function toggleEditModal() {
+            const modal = document.getElementById('edit-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Preview Foto saat diunggah
+        document.getElementById('photo-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profile-photo').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Simpan Perubahan Kontak
+        function saveProfileChanges() {
+            const newWa = document.getElementById('input-wa').value.trim().replace(/[^0-9]/g, '');
+            const newEmail = document.getElementById('input-email').value.trim();
+
+            if (newWa) {
+                activePhoneNumber = newWa;
+                document.getElementById('wa-text').textContent = '+' + newWa;
+            }
+            if (newEmail) {
+                document.getElementById('email-text').textContent = newEmail;
+            }
+
+            toggleEditModal();
+            showToast('Data portofolio berhasil diperbarui!');
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toastBox = document.getElementById('toast-box');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toastBox.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toastBox.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Salin Teks ke Clipboard
+        function copyText(elementId, successMsg) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg);
+            } catch (err) {
+                showToast('Gagal menyalin teks.');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Kirim Form ke WhatsApp
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value.trim();
+            const position = document.getElementById('job-position').value.trim();
+            const message = document.getElementById('sender-message').value.trim();
+
+            const fullText = `Halo Aura Hati Padilah Direja,%0A%0ASaya *${encodeURIComponent(name)}*.%0APosisi: *${encodeURIComponent(position)}*%0A%0APesan:%0A${encodeURIComponent(message)}`;
+            
+            showToast('Membuka WhatsApp...');
+            setTimeout(() => {
+                window.open(`https://wa.me/${activePhoneNumber}?text=${fullText}`, '_blank');
+            }, 600);
+        });
+
+        // Filter Kartu Pengalaman
+        function filterExperience(category, btn) {
+            document.querySelectorAll('.exp-filter-btn').forEach(b => {
+                b.classList.remove('bg-slate-900', 'text-white');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            btn.classList.remove('bg-slate-100', 'text-slate-600');
+            btn.classList.add('bg-slate-900', 'text-white');
+
+            document.querySelectorAll('.exp-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
